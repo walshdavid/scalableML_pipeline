@@ -14,7 +14,7 @@ from ml.model import train_model, compute_model_metrics, inference
 # if __name__ == "main":
 # Load in the data.
 print('Loading data...')
-data = pd.read_csv("census.csv")
+data = pd.read_csv("data/census.csv")
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 print('Process train and test data..')
