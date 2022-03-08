@@ -47,9 +47,9 @@ X_test, y_test, _, _ = process_data(
 print('Train and save model...')
 model = train_model(X_train, y_train, hp=True)
 
-dump(model, "../model/model.joblib")
-dump(encoder, "../model/encoder.joblib")
-dump(lb, "../model/lb.joblib")
+dump(model, "./model/model.joblib")
+dump(encoder, "./model/encoder.joblib")
+dump(lb, "./model/lb.joblib")
 
 # Performance overall
 preds = inference(model, X_test)
