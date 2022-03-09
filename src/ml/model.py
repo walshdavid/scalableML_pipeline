@@ -8,6 +8,7 @@ from sklearn.metrics import (
 )
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RandomizedSearchCV, StratifiedKFold
+from .data import process_data
 
 SEED = 42
 
@@ -15,7 +16,7 @@ SEED = 42
 def train_model(X_train, y_train, hp=False):
     """
     Trains a machine learning model and returns it.
-    
+
     Inputs
     ------
     X_train : np.array
@@ -43,7 +44,7 @@ def train_model(X_train, y_train, hp=False):
         optimal_model = RandomizedSearchCV(
             model,
             param_distributions=parameters,
-            n_iter=50,
+            n_iter=5,
             cv=cv,
             n_jobs=-1,
             verbose=2,
@@ -101,6 +102,43 @@ def compute_model_metrics(y, preds):
     precision = precision_score(y, preds, zero_division=1)
     recall = recall_score(y, preds, zero_division=1)
     return precision, recall, fbeta
+
+def compute_model_metrics_slice(
+    model, data, encoder, lb, cat_features, sliced_feature, label
+):
+    """
+    Validates the trained machine learning model using precision, recall, and F1.
+
+    Inputs
+    ------
+    
+    """
+
+    dict_result = {}
+
+    for i in data[sliced_feature].unique():
+        data_slice = data[data[sliced_feature] == i]
+
+        X, y, _, _ = process_data(
+            data_slice,
+            categorical_features=cat_features,
+            label="salary",
+            training=False,
+            encoder=encoder,
+            lb=lb,
+        )
+
+        preds = inference(model, X)
+        precision, recall, fbeta = compute_model_metrics(y, preds)
+
+        dict_result[i] = {
+            "precision": precision,
+            "recall": recall,
+            "fbeta": fbeta,
+            "sample": len(y),
+        }
+
+    return {sliced_feature: dict_result}
 
 
 def inference(model, X):
