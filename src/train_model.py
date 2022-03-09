@@ -1,6 +1,6 @@
 # Script to train machine learning model.
 
-# import json
+import json
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from joblib import dump
@@ -19,7 +19,6 @@ data = pd.read_csv("data/census.csv")
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 print('Process train and test data..')
 train, test = train_test_split(data, test_size=0.20, random_state=42)
-print(train)
 cat_features = [
     "workclass",
     "education",
@@ -45,7 +44,6 @@ X_test, y_test, _, _ = process_data(
 )
 # Train and save a model.
 print('Train and save model...')
-print(X_train.shape)
 model = train_model(X_train, y_train, hp=True)
 
 dump(model, "./model/model.joblib")
@@ -60,6 +58,6 @@ precision, recall, fbeta = compute_model_metrics(y_test, preds)
 metrics_education = compute_model_metrics_slice(
     model, test, encoder, lb, cat_features, "education", "salary"
 )
-with open("../screenshots/slice_output.json", "w") as fp:
+with open("screenshots/slice_output.json", "w") as fp:
     json.dump(metrics_education, fp)
 

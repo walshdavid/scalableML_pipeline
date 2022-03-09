@@ -1,15 +1,3 @@
-"""
-
-Testing Fast API
-
-Author: Ferruh Unlu
-
-Date: 2/7/2022
-
-"""
-
-# ref: https://fastapi.tiangolo.com/tutorial/testing/
-
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 

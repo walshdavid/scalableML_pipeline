@@ -1,6 +1,3 @@
-# Put the code for your API here.
-# Put the code for your API here.
-
 from joblib import load
 import os
 from typing import Dict
