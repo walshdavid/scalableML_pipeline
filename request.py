@@ -1,4 +1,5 @@
 import requests
+import json
 
 url = "https://scalable-ml-pipeline.herokuapp.com/predict"
 
@@ -23,7 +24,7 @@ data = {
   "hours_per_week": 40,
   "native_country": "United-States"
 }
-response = requests.post(url, headers=headers, data=data)
+response = requests.post(url, headers=headers, data=json.dumps(data))
 
 status_code = response.status_code
 data = response.json()
