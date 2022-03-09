@@ -44,7 +44,7 @@ def train_model(X_train, y_train, hp=False):
         optimal_model = RandomizedSearchCV(
             model,
             param_distributions=parameters,
-            n_iter=5,
+            n_iter=50,
             cv=cv,
             n_jobs=-1,
             verbose=2,

@@ -1,0 +1,4 @@
+[core]
+    remote = arn:aws:s3:::dwmlpipeline
+['remote "arn:aws:s3:::dwmlpipeline"']
+    url = s3://dwmlpipeline/
