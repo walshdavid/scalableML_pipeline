@@ -9,7 +9,8 @@ The model is a Random Forest Classifier from scikit-learn. The Hyperparameters h
 This model should be used to predict the whether a person makes over 50K a year based off a handful of attributes. 
 
 ## Metrics
-The model was optimized for the F1 score. The value on the test set of the F1 score is 0.8, the recall is 0.53 and the precision is 0.60
+The model was optimized for the F1 score. The value on the test set of the F1 score is 0.685
+(Best Parameters: {'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 30, 'criterion': 'entropy', 'bootstrap': False})
 
 ## Data
 The data was obtained from the UCI Machine Learning Repository (https://archive.ics.uci.edu/ml/datasets/census+income). Among 14 attributes, only 6 categorical attributes have been used (workclass, education, marital-status, occupation, relationship, race, sex, native-country).
