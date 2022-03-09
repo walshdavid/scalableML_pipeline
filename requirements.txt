@@ -5,3 +5,5 @@ numpy
 sklearn
 requests
 pytest
+uvicorn
+gunicorn
